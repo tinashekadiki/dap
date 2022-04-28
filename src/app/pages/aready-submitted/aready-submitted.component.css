@@ -1,0 +1,27 @@
+.icon-container{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #002060;
+  padding: 30px;
+  margin-top: 70px;
+
+}
+.container-fluid{
+  /*position: absolute;*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*-moz-transform: translateX(-50%) translateY(-50%);*/
+  /*-webkit-transform: translateX(-50%) translateY(-50%);*/
+  /*transform: translateX(-50%) translateY(-50%);*/
+}
+
+.icon-container i{
+  font-size: 40px;
+  color: white;
+}
+
+h6
+{
+  font-weight: bold;
+}

@@ -1,0 +1,188 @@
+<div class="container-fluid">
+  <div class="outside-container">
+    <ul class="tex text-center bread">
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li class="active">4</li>
+      <li>5</li>
+    </ul>
+    <div>
+      <h6 class="review-header">
+        Please complete the application. If information is already populated,
+        please review and edit for accuracy
+      </h6>
+    </div>
+    <form [formGroup]="customerEmployementForm">
+      <div class="stepthree">
+        <div>
+          <h6 id="detail-header">Employment and Income Information</h6>
+        </div>
+        <div class="form-group">
+          <label for="employmentstatus">Employment Status</label>
+          <select (change)="employeeStatusChange()" formControlName="employmentStatus" class="form-control"
+            placeholder="" aria-describedby="helpId">
+            <option [value]="employementStatuse.name" *ngFor="let employementStatuse of employementStatuses">
+              {{employementStatuse.name}}</option>
+          </select>
+          <small *ngIf="employmentStatus.errors?.required && submitted" class="error">
+            Please select employement status.</small>
+        </div>
+        <div *ngIf="hasEmployement">
+          <div class="form-group">
+            <label for="employername">Employer Name</label>
+            <input type="text" formControlName="employerName" class="form-control" placeholder=""
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <label for="jobtitle">Job Title</label>
+            <input type="text" formControlName="jobTitle" class="form-control" placeholder=""
+              aria-describedby="helpId" />
+          </div>
+        </div>
+        <div *ngIf="hasEmployement" class="form-group">
+          <label for="workphonenumber">Phone Number</label>
+          <input id="workphonenumber" mask="000) 000-0000" [dropSpecialCharacters]="false" type="tel"
+            formControlName="workPhoneNumber" prefix="+1(" maxlength="16" class="form-control" placeholder=""
+            aria-describedby="helpId" />
+        </div>
+        <div *ngIf="hasEmployement" class="form-group">
+          <label for="annualincome">Annual Employment Income <small>(Before Taxes)</small></label>
+          <input type="tel" formControlName="annualIncome" currencyMask id="annulaIncome"
+            [options]="{ prefix: '$ ', thousands: ',', precision: 0,align:'left' }" data-type="currency"
+            (keyup)="formatAnnualIncome()" class="form-control" placeholder="" aria-describedby="helpId" />
+          <br />
+          <small class="approx">Approx. ${{currentWeekSalary}}/week or ${{currentMonthlySalary}}/month</small>
+        </div>
+        <div *ngIf="hasEmployement" class="form-group">
+          <label for="cc">Start Date <small>(Please Use MM/DD/YYYY Format)</small></label>
+          <input placeholder="__/__/____" maxlength="10" (input)="getYearsDiff($event.target.value)" type="tel"
+            formControlName="startDate" [dropSpecialCharacters]="false" mask="00/00/0000" class="form-control" />
+          <div class="d-flex flex-column">
+            <small class="email-explanation">
+              <p *ngIf="previuosEmployementStatusLessTwoYears">
+                It appears you have been at this employer less than 2 years;
+                please add details for your previous employer
+              </p>
+            </small>
+            <small *ngIf="!isSDateValidFo && submitted" class="error">Please Use MM/DD/YYYY date format. </small>
+            <small *ngIf="sDaysError || submitted" class="error">{{sDaysError}}</small>
+            <small *ngIf="sMonthsError || submitted" class="error">{{sMonthsError}} </small>
+            <small *ngIf="sYearsError || submitted" class="error">{{sYearsError}}</small>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div>
+          <a (click)="togglePreviuosEmployementStatus()" class="detail-header">
+            {{previuosEmployementStatus || previuosEmployementStatusLessTwoYears?"-- Never mind, No Previous
+            Employment":"+ Add Previous Employment"}}
+          </a>
+        </div>
+        <div *ngIf="previuosEmployementStatus || previuosEmployementStatusLessTwoYears" id="collapse1">
+          <div class="form-group">
+            <label for="previousemployername">Previous Employer Name</label>
+            <input type="text" formControlName="previousEmployerName" class="form-control" placeholder=""
+              aria-describedby="helpId" />
+          </div>
+
+          <div class="form-group">
+            <label for="previousjobtitle">Previous Job Title</label>
+            <input type="text" formControlName="previousJobTitle" class="form-control" placeholder=""
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <label for="pworkphonenumber">Previous Phone Number</label>
+            <input type="tel" formControlName="previousPhoneNumber" prefix="+1(" maxlength="16" class="form-control"
+              mask="000) 000-0000" [dropSpecialCharacters]="false" placeholder="" aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <label for="pannualincome">Previous Annual Employment Income
+              <small>(Before Taxes)</small></label>
+            <input type="tel" class="form-control" currencyMask id="annulaIncomePrev"
+              [options]="{ prefix: '$ ', thousands: ',', precision: 0,align:'left' }"
+              (keyup)="formatPreviousAnnualIncome()" formControlName="previousAnnualIncome" aria-describedby="helpId" />
+            <br />
+            <small class="approx">Approx. ${{prevWeekSalary}}/week or ${{prevMonthlySalary}}/month</small>
+          </div>
+          <div class="form-group">
+            <label for="startdate">Start Date <small>(Please Use MM/DD/YYYY Format)</small></label>
+            <input type="tel" placeholder="__/__/____" mask="00/00/0000" class="form-control"
+              (keyup)="isPrevStDateValid($event.target.value)" [dropSpecialCharacters]="false"
+              formControlName="previousEmploymentStartDate" maxlength="10" />
+            <div class="d-flex flex-column">
+              <small *ngIf="!isPrevStDateValidFor && submitted" class="error">Please Use MM/DD/YYYY date format.
+              </small>
+              <small *ngIf="prevStDaysError || submitted" class="error">{{prevStDaysError}}</small>
+              <small *ngIf="prevStMonthsError || submitted" class="error">{{prevStMonthsError}}</small>
+              <small *ngIf="prevStYearsError || submitted" class="error">{{prevStYearsError}}</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="enddate">End Date <small>(Please Use MM/DD/YYYY Format)</small></label>
+            <input type="tel" placeholder="__/__/____" formControlName="previousEmploymentEndDate" mask="00/00/0000"
+              (keyup)="isPrevEnDateValid($event.target.value)" [dropSpecialCharacters]="false" class="form-control"
+              maxlength="10" aria-describedby="helpId" />
+            <div class="d-flex flex-column">
+              <small *ngIf="!isPrevEnDateValidFor && submitted" class="error">Please Use MM/DD/YYYY date format. <br>
+              </small>
+              <small *ngIf="prevEnDaysError || submitted" class="error">{{prevEnDaysError}} </small>
+              <small *ngIf="prevEnMonthsError || submitted" class="error">{{prevEnMonthsError}} </small>
+              <small *ngIf="prevEnYearsError || submitted" class="error">{{prevEnYearsError}} </small>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a (click)="toggleAdditionalIncomeStatus()" class="detail-header">{{additionalIncomeStatus?"-- Never mind,
+            don’t add additional income":"+ Add another
+            source of income"}}</a>
+          <small class="email-explanation">
+            <p>
+              Alimony, child support or separate maintenance income need not be revealed if you do not wish to have it
+              considered as a basis for repaying this obligation
+            </p>
+          </small>
+        </div>
+        <div class="clear"></div>
+        <div *ngIf="additionalIncomeStatus" id="collapse-2">
+          <div class="form-group">
+            <label for="additionalincome">Additional Annual Income
+              <small>(Before Taxes)</small></label>
+            <input type="tel" class="form-control" currencyMask id="annulaIncomeAd"
+              [options]="{ prefix: '$ ', thousands: ',', precision: 0,align:'left' }"
+              (keyup)="formatAdditionalAnnualIncome()" formControlName="additionalIncome" />
+            <small class="approx">Approx. ${{addWeekSalary}}/week or ${{addMonthlySalary}}/month</small>
+          </div>
+          <div class="form-group">
+            <label for="additionalIncomeSource">Income Source</label>
+            <select formControlName="additionalIncomeSource" class="form-control" placeholder=""
+              aria-describedby="helpId">
+              <option [value]="additionalIncomeSource.name"
+                *ngFor="let additionalIncomeSource of additionalIncomeSources">
+                {{additionalIncomeSource.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="alert alert-danger text text-center" role="alert">
+          {{ error }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <button type="button" [routerLink]="['/contactinfo']" id="cancel" class="btn btn-primary">
+            Back
+          </button>
+        </div>
+        <div class="col-6">
+          <button (click)="submitForm()" type="submit" id="next" class="btn btn-primary app-button">
+
+            {{submitLoad ?'':'Next'}}<div *ngIf="submitLoad" class="spinner-border text-light" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

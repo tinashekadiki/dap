@@ -1,0 +1,10 @@
+applications:
+- name: qubed-dealerform
+  disk_quota: 1G
+  instances: 1
+  memory: 1G
+   buildpacks: https://github.com/cloudfoundry/nodejs-buildpack
+  command: node server js
+  routes:
+  - route: dealerform.cfapps.io
+  stack: cflinuxfs3

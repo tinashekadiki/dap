@@ -1,0 +1,216 @@
+.review-header{
+    font-size: 14px;
+    /* text-align: center; */
+    color:#14B6F1;
+   margin-bottom: 20px;
+}
+
+.label-text{
+  color:#14B6F1;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+#detail-header{
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    color: #002060;
+}
+
+#header-holder{
+  padding: 10px;
+  align-items: center;
+  padding-left: 20px;
+}
+
+p{
+    text-align: justify;
+    font-size: 13px;
+    color: #969696;
+}
+
+h6{
+    color: #969696;
+}
+
+.lock-holder{
+  float:right;
+  display: inline;
+}
+
+.outside-container{
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.btn-crumb {
+    display:block;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border: 1px solid #0275d8;
+
+  }
+
+  .btn-crumb p{
+    text-align: center;
+    font-size: 13px;
+    color: #0275d8;
+
+  }
+
+  .selected-crumb {
+    display:block;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: 1px solid #0275d8;
+    background-color: #0275d8 ;
+
+  }
+
+  .selected-crumb p{
+    color: #ffffff ;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .breadcrumbs{
+    display: inline-flex;
+    margin: auto;
+  }
+
+  .crumbline{
+    width: 10px;
+  }
+
+  .crumb-holder{
+      width: 100%;
+      display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+      display: -ms-flexbox;  /* TWEENER - IE 10 */
+      display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  #myBtn{
+    border-radius: 50%;
+    background: #0275d8 ;
+    z-index: 99;
+    margin-right: 3px;
+    display: inline-block;
+  }
+
+
+
+#myBtn1{
+    border-radius: 50%;
+    background: #0275d8 ;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+}
+li {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  border: 1px solid #002060;
+  color:#002060;
+  margin: 0 5px;
+  display: inline-block;
+  position: relative;
+}
+
+li::before{
+  content: '';
+  position: absolute;
+  top: .9em;
+  left:-0.7em;
+  width:0.7em;
+  height: .1em;
+  background:#002060;
+  z-index: -1;
+}
+
+li:first-child::before {
+  display: none;
+}
+
+#myBtn1{
+  background:#002060;
+}
+
+.secure-lock{
+  font-size: 25px;
+}
+
+.float-button{
+  float: right;
+  position: relative;
+  z-index: 1;
+}
+.checkbox-text{
+  font-size: 13px;
+}
+/*.form-check{*/
+/*  margin-left: 10px;*/
+/*}*/
+.icon-button2{
+  /* position: absolute; */
+
+  width: 40px;
+  height: 40px;
+  right: 0;
+  bottom: 0;
+}
+
+li {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  border: 1px solid #002060;
+  color:#002060;
+  margin: 0 5px;
+  display: inline-block;
+  position: relative;
+}
+
+li::before{
+  content: '';
+  position: absolute;
+  top: .9em;
+  left:-0.7em;
+  width:0.7em;
+  height: .1em;
+  background:#88898d;
+  z-index: -1;
+}
+
+li:first-child::before {
+  display: none;
+}
+.link{
+  text-decoration: underline;
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 30px;
+}
+.link2{
+  text-decoration: underline;
+  font-size: 14px;
+  color:#002060;
+
+}
+
+.form-check-label{
+  font-size: 15px;
+}
+.email-explanation{
+  font-size: 13px;
+}

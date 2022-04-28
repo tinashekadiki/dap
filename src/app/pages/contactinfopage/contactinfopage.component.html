@@ -1,0 +1,254 @@
+<div class="container-fluid">
+  <div class="outside-container">
+    <ul class="bread text text-center">
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li>3</li>
+      <li class="active">4</li>
+      <li>5</li>
+    </ul>
+    <div>
+      <h6 class="review-header">Please complete the application. If information is already populated, please review and
+        edit for accuracy</h6>
+    </div>
+    <form [formGroup]="customerResidentalForm" (ngSubmit)="submitForm()">
+      <div class="steptwo">
+        <div>
+          <h6 id="detail-header">Residential Information</h6>
+        </div>
+
+        <div class="form-group">
+          <label for="Address">Address</label>
+          <input type="text" formControlName="address" class="form-control" aria-describedby="helpId">
+          <small *ngIf="address.errors?.required && submitted" class="error">Address is
+            required.</small>
+        </div>
+        <div class="form-group">
+          <label for="Address">Apartment Unit</label>
+          <input type="text" formControlName="apartmentUnit" class="form-control" aria-describedby="helpId">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" formControlName="city" class="form-control" aria-describedby="helpId">
+          <small *ngIf="city.errors?.required && submitted" class="error">City is required.</small>
+        </div>
+        <div class="row">
+          <div class="col-6 country-code">
+            <label for="zip">Zip</label>
+            <input type="tel" formControlName="zip" class="form-control">
+            <small *ngIf="zip.errors?.required && submitted" class="error">Zip
+              required.</small>
+          </div>
+          <div class="col-6 country-code">
+            <label for="state">State</label>
+            <select formControlName="state" class="form-control" aria-describedby="helpId">
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+            <small *ngIf="state.errors?.required && submitted" class="error">State is required.</small>
+          </div>
+        </div>
+        <div class="form-group mt-4">
+          <label for="educationlevel">Housing Status
+          </label>
+          <select formControlName="housingStatus" class="form-control" aria-describedby="helpId" required>
+            <option [value]="housingStatuse.name" *ngFor="let housingStatuse of housingStatuses">{{housingStatuse.name}}
+            </option>
+          </select>
+          <small *ngIf="housingStatus.errors?.required && submitted" class="error">Please select housing status</small>
+
+        </div>
+        <div class="form-group" *ngIf="housingStatus.value=='Mortgage'">
+          <label for="mortgageamount"> Mortgage Amount (Monthly) </label>
+          <input type="tel" currencyMask formControlName="monthlyMortgage" id="monthlyMortgage"
+            (input)="formatDataService.removeCharcFromField('monthlyMortgage')"
+            [options]="{ prefix: '$ ', thousands: ',', precision: 0,align:'left' }" class="form-control"
+            aria-describedby="helpId">
+        </div>
+        <div class="form-group" *ngIf="housingStatus.value=='Rent'">
+          <label for="mortgageamount"> Rent Amount (Monthly) </label>
+          <input type="tel" currencyMask formControlName="monthlyRent" id="monthlyRent"
+            (input)="formatDataService.removeCharcFromField('monthlyRent')"
+            [options]="{ prefix: '$ ', thousands: ',',precision: 0, align:'left' }" class="form-control"
+            aria-describedby="helpId">
+        </div>
+        <div class="row mt-2">
+          <div class="col-6">
+            <label for="zip">Years Lived</label>
+            <input type="number" id="timePrev" (input)="timeAtAddressYearsInput($event.target.value,'timePrev')"
+              formControlName="timeAtAddressYears" class="form-control">
+            <small *ngIf="timeAtAddressYears.errors?.required  && submitted" class="error">Years Lived
+              required.</small>
+          </div>
+          <div class="col-6">
+            <label for="zip">Month Lived</label>
+<!--            (input)="updateMonths($event.target.value, 'timePrevM')-->
+            <input type="tel" id="timePrevM"
+              formControlName="timeAtAddressMonths" maxlength="2" class="form-control">
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div>
+          <a (click)="toggleAddressState()" class="toggle-button detail-header">{{ previousAddressState ? '-- No Previous Address':'+ Previous Address'}}</a>
+        </div>
+        <div *ngIf="previousAddressState">
+          <div class="form-group">
+            <label for="previousaddress">Previous Address</label>
+            <input type="text" formControlName="previousAddress" class="form-control" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label for="Address">Previous Apartment Unit</label>
+            <input type="text" formControlName="previousApartmentUnit" class="form-control" aria-describedby="helpId">
+
+          </div>
+          <div class="form-group">
+            <label for="previousCity">City</label>
+            <input type="text" formControlName="previousCity" class="form-control" aria-describedby="helpId">
+          </div>
+          <div class="row">
+            <div class="col-6 country-code">
+              <label for="previouszip">Zip</label>
+              <input type="tel" formControlName="previousZip" class="form-control" aria-describedby="helpId">
+            </div>
+            <div class="col-6 country-code">
+              <label for="prreviosstate">State</label>
+              <select formControlName="previousState" class="form-control" aria-describedby="helpId">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <label>Years Lived</label>
+              <input type="number" id="timeP" (input)="formatDataService.removeCharcFromField('timeP')"
+                formControlName="timeAtPreviousAddressYears" class="form-control">
+            </div>
+            <div class="col-6">
+              <label>Months Lived</label>
+<!--              (input)="updatePMonths($event.target.value, 'timeP')-->
+              <input type="number" id="timePm" max="11"
+                formControlName="timeAtPreviousAddressMonths" maxlength="2" class="form-control">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="mt-3">
+
+      </div>
+      <div class="clear"></div>
+      <div class="row">
+        <div class="col-6">
+          <button type="button" [routerLink]="['/additionalpersonalinfo']" routerLinkActive="router-link-active"
+            id="cancel" class="btn btn-primary">Back</button>
+        </div>
+        <div class="col-6">
+          <button type="submit" id="next" class="btn btn-primary app-button">
+            {{submitLoad ?'':'Next'}}<div *ngIf="submitLoad" class="spinner-border text-light" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

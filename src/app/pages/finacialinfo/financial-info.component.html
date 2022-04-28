@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <div class="outside-container">
+    <ul class="bread text text-center">
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li>5</li>
+    </ul>
+    <form [formGroup]="customerFinancialForm">
+      <div class="stepthree">
+        <div class="mt-5">
+          <h6 id="detail-header">Financial Information</h6>
+        </div>
+
+        <label class="rent-label text text-center mt-3" for="">Have you filed for bankruptcy within the last 10 years?
+        </label>
+        <div class="row rent-row mb-5">
+          <div class="col-4 rent-col-left mr-5">
+            <input type="radio" formControlName="bankruptcy" id="bank_yes" (input)="bankruptcy = true" name="bankruptcy"
+              value="true" />
+            <label class="text text-center" for="bank_yes">Yes</label>
+          </div>
+          <div class="col-4 rent-col-right ml-5">
+            <input type="radio" id="bank_no" formControlName="bankruptcy" (input)="bankruptcy = false" name="bankruptcy"
+              value="false" />
+            <label class="text text-center" for="bank_no">No</label>
+          </div>
+        </div>
+
+        <div *ngIf="bankruptcy" class="form-group">
+          <label for="cc">Bankruptcy Date <small>(Please Use MM/DD/YYYY Format)</small></label>
+          <input formControlName="bankruptcyDate" placeholder="__/__/____" maxlength="10" type="tel" (keyup)="isBaDateValid($event.target.value)" [dropSpecialCharacters]="false" mask="00/00/0000"
+            class="form-control" />
+            <div class="d-flex flex-column">
+            <small *ngIf="!isBaDateValidFo && submitted" class="error">Please Use MM/DD/YYYY date format.</small>
+            <small *ngIf="baDaysError || submitted" class="error">{{baDaysError}}</small>
+            <small *ngIf="baMonthsError || submitted" class="error">{{baMonthsError}}</small>
+            <small *ngIf="baYearsError || submitted" class="error">{{baYearsError}}</small>
+            </div>
+        </div>
+
+        <label class="rent-label text text-center mt-3">Have you had a vehicle repossession or home foreclosure within
+          the past 7 years? </label>
+        <div class="row rent-row mb-5">
+          <div class="col-4 rent-col-left mr-5">
+            <input type="radio" formControlName="reposession" id="yes_v" name="reposession" value="true"
+              (input)="reposession=true" />
+            <label class="text text-center" for="yes_v">Yes</label>
+          </div>
+
+          <div class="col-4 rent-col-right ml-5">
+            <input type="radio" id="no_v" formControlName="reposession" name="reposession" (input)="reposession=false"
+              value="false" />
+            <label class="text text-center" for="no_v">No</label>
+          </div>
+        </div>
+        <div *ngIf="reposession" class="form-group">
+          <label for="cc">Reposession Date <small>(Please Use MM/DD/YYYY Format)</small></label>
+          <input formControlName="reposessionDate" placeholder="__/__/____" maxlength="10" type="tel" [dropSpecialCharacters]="false" mask="00/00/0000" (keyup)="isReDateValid($event.target.value)"
+            class="form-control" />
+            <div class="d-flex flex-column">
+            <small *ngIf="!isReDateValidFo && submitted" class="error">Please Use MM/DD/YYYY date format. </small>
+            <small *ngIf="reDaysError || submitted" class="error">{{reDaysError}} </small>
+            <small *ngIf="reMonthsError || submitted" class="error">{{reMonthsError}} </small>
+            <small *ngIf="reYearsError || submitted" class="error">{{reYearsError}} </small>
+            </div>
+        </div>
+
+      </div>
+      <div *ngIf="error" class="">
+        <div class="alert alert-danger text text-center" role="alert">
+          {{error}}
+        </div>
+      </div>
+      <div class="row buttons">
+        <div class="col-6">
+          <button type="button" [routerLink]="['/employmentinfo']" id="cancel" class="btn btn-primary">Back</button>
+        </div>
+        <div class="col-6">
+          <button type="submit" (click)="submitForm()" id="next" class="btn btn-primary app-button">
+            {{submitLoad ?'':'Next'}}<div *ngIf="submitLoad" class="spinner-border text-light" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

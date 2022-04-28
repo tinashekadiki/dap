@@ -1,0 +1,93 @@
+<div class="container-fluid">
+  <div class="outside-container">
+    <ul class="bread text text-center">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div id="header-holder" class="col-8">
+
+      <h4 id="detail-header">Let’s Get Started!</h4>
+    </div>
+    <div class="col-2">
+      <div class="row">
+        <div class=""></div>
+        <em class="col-4 text text-center fa fa-lock secure-lock"></em>
+      </div>
+      <div class="row">
+        <p>Secure</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cantainer mt-4">
+    <form [formGroup]="disclosureForm" class="col-12">
+      <h5 class="label-text">Please Indicate whether you are applying for: </h5>
+      <div class="form-group form-check">
+        <input type="checkbox" [checked]="applicationType =='single'" (change)="onApplicationTypeChange('single')" class="form-check-input">
+        <label class="form-check-label" for="exampleCheck1">Individual Credit</label>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" [checked]="applicationType=='dual'" (change)="onApplicationTypeChange('dual')" class="form-check-input">
+        <label class="form-check-label" for="exampleCheck2">Joint Credit. I am applying for
+          joint credit</label>
+        <small *ngIf="applicationType =='dual'" class="email-explanation mt-4">
+          <p>Please note that your application will not be saved until you AND your co-applicant have completed and
+            reviewed the application. If your co-applicant no longer wishes to apply jointly, you will have the
+            opportunity to change and apply as an individual applicant.
+          </p>
+        </small>
+      </div>
+      <h5 class="label-text mt-5">Please review the websites terms and conditions below</h5>
+
+      <a [href]="sprivacyLink"  [target]="sprivacyLink" class="link mb-4">{{privacyLink}}</a>
+
+      <div class="form-group form-check mt-4">
+        <input type="checkbox" formControlName="policy" class="form-check-input">
+        <label class="form-check-label" for="exampleCheck1">I acknowledge I have received and reviewed the privacy
+          policy </label>
+        <small class="error" *ngIf="webTermsError.length">{{webTermsError}}</small>
+      </div>
+      <div *ngIf="isDealerInCalifornia || isCustomerInCalifornia">
+        <h5 class="label-text mt-5">For California Residents Only: </h5>
+        <a href="" class="link2 mb-4">See the California Notice at Collection
+        </a>
+        <div class="form-group form-check mt-4">
+          <input type="checkbox" formControlName="disclosure" class="form-check-input">
+          <label class="form-check-label" for="exampleCheck1">I acknowledge I have received the disclosures
+          </label>
+          <small class="error" *ngIf="disclosureError.length">{{disclosureError}}</small>
+        </div>
+      </div>
+
+      <input type="tel" class="form-control" hidden formControlName="phoneNumber" mask="(000) 000-0000"
+         placeholder="" />
+      <input type="tel" class="form-control" hidden formControlName="lastFour" mask="00/00/0000"  placeholder="" />
+    </form>
+  </div>
+  <div *ngIf="error" class="col-12">
+    <div class="alert alert-danger text text-center" role="alert">
+      {{error}}
+    </div>
+  </div>
+  <div class="mb-3 mt-5" *ngIf="!loadingIp">
+    <button type="submit" (click)="submitForm()" id="next" style="width: 100%;" class="btn btn-primary app-button">
+      {{loading ?'':'Next'}}<div *ngIf="loading" class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </button>
+  </div>
+  <div class="mb-3 mt-5" *ngIf="loadingIp">
+    <button type="submit"  id="next" style="width: 100%;" class="btn btn-primary app-button">
+      {{loadingIp ?'Loading':''}}<div *ngIf="!loadingIp" class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </button>
+  </div>
+</div>

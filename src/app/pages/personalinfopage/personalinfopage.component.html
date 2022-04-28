@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="outside-container">
+    <ul class="bread text text-center">
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li>2</li>
+      <li>3</li>
+      <li class="active">4</li>
+      <li>5</li>
+    </ul>
+    <div>
+      <h6 class="review-header">Please complete the application. If information is already populated, please review and
+        edit for accuracy</h6>
+    </div>
+    <form [formGroup]="customerPersonalDataForm">
+      <div class="stepone">
+        <div>
+          <h6 id="detail-header">Personal Information</h6>
+        </div>
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" formControlName="firstName" class="form-control">
+          <small *ngIf="firstName.errors?.required && submitted" class="error">First Name is required.</small>
+        </div>
+        <div class="form-group">
+          <label>Middle Name</label>
+          <input type="text" formControlName="middleName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control">
+          <small *ngIf="lastName.errors?.required && submitted" class="error">Last name is required.</small>
+        </div>
+        <div class="form-group">
+          <label>Date of Birth <small>(Please Use MM/DD/YYYY Format)</small></label>
+          <input type="tel" placeholder="__/__/____" formControlName="dateOfBirth" [dropSpecialCharacters]="false"
+            maxlength="10" mask="00/00/0000" class="form-control" (input)="isDateValid($event.target.value)">
+          <div class="d-flex flex-column">
+            <small *ngIf="dateOfBirth.errors?.required && submitted" class="error">Date of birth is
+              required.</small>
+            <small *ngIf="!isDateValidFo && dateError.length" class="error">{{dateError}}</small>
+            <small *ngIf="!isDateValidFo && submitted" class="error">Please Use MM/DD/YYYY date format. </small>
+            <small *ngIf="daysError || submitted" class="error">{{daysError}}</small>
+            <small *ngIf="monthsError || submitted" class="error">{{monthsError}} </small>
+            <small *ngIf="yearsError || submitted" class="error">{{yearsError}} </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ssn">Social Security Number</label>
+          <input type="tel" formControlName="socialSecurityNumber" name="ssn" id="ssn" style="text-indent:25px;"
+            mask="000-00-0000" autocomplete="off" maxlength="11" class="form-control" value="***********" (input)="isValidSsn($event.target.value)">
+          <small *ngIf="socialSecurityNumber.errors?.required && submitted" class="error">SSN is
+            required.</small>
+          <small *ngIf="ssnError.length" class="error">{{ssnError}} <br></small>
+        </div>
+        <div class="">
+
+        </div>
+        <div class="row mt-5">
+          <div class="col-6">
+            <button type="button" disabled [routerLink]="['/disclosures']" id="cancel"
+              class="btn btn-primary">Back</button>
+          </div>
+          <div class="col-6 ">
+            <button type="submit" (click)="submitForm()" id="next" class="app-button btn btn-primary">
+              {{loading ?'':'Next'}}<div *ngIf="loading" class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

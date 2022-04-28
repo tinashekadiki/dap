@@ -1,0 +1,245 @@
+<div class="container-fluid">
+  <div *ngIf="diclosures.electronic" class="outside-container">
+    <div *ngIf="error" class="">
+      <div class="alert alert-danger text text-center" role="alert">
+        {{error}}
+      </div>
+    </div>
+
+    <div>
+      <h5 style="display: inline-block;">
+        <span class="aggree-text">Electronic Record Disclosure and Consent
+        </span>
+      </h5>
+
+      <p>Please read this Electronic Records Disclosure, Consent and Agreement to Use Electronic Signatures
+        (“Agreement”) carefully and download or print a copy for your records. You must click the “Accept” button at the
+        end of this Agreement to continue your application.
+      </p>
+      <p>In this Agreement, the words “we,” “us,” and “our” mean {{dealershipData.dealership.name}}.</p>
+      <p>Electronic Application and Related Disclosures. Federal and state laws and regulations require us to give you
+        certain important disclosures in connection with your application for credit. These disclosures are included
+        with our online credit application (the “Disclosures”). With your consent, we will give you the Disclosures
+        electronically. </p>
+      <p>
+        Requesting Paper Copy of Disclosures. At your request, we will provide a paper copy of any Disclosures. To
+        request a paper copy of any Disclosures, contact us by telephone at <b>{{dealershipData.phone}}</b> or by email at <b>{{dealershipData.emailAddress}}</b> . We will not charge you any fees for providing a paper copy.
+      </p>
+      <p>
+        Your Consent is Required. You must consent to receiving the Disclosures electronically in order to apply online
+        for credit. Your consent will only apply to the application, and you will not be consenting to receiving other
+        electronic records or disclosures at this time.
+      </p>
+
+      <p>If you do not want to receive the Disclosures electronically, you should exit the online credit application
+        area, and your online credit application will be discontinued. </p>
+      <p>System Requirements to Access Application and Disclosures. To apply electronically and to receive the
+        Disclosures electronically, you must have the following:</p>
+      <ul>
+        <li>
+          <p>A personal computer or other access device which is capable of accessing the Internet
+          </p>
+        </li>
+        <li>
+          <p>Internet access
+
+          </p>
+        </li>
+        <li>
+          <p>An active email account
+          </p>
+        </li>
+        <li>
+          <p>The ability to receive files in PDF format</p>
+        </li>
+      </ul>
+
+      <p>System Requirements to Retain the Disclosures and Credit Agreement. To retain the Disclosures, your system must
+        have the ability to either download (to your hard disk drive or other storage device) or print web pages
+        (screens) and files in PDF format.
+
+      </p>
+      <p>Updating Your Information. You should keep us informed of any change in your email address. You may contact us
+        to tell us about these changes by e-mail at <b>{{dealershipData.emailAddress}}</b>.</p>
+      <p>Acceptance of Agreement and Consent to Receive Electronic Disclosures. Clicking the “Accept” button (below)
+        constitutes your written signature and approval of, and agreement to be bound by, the terms of this Agreement.
+        If you do not Click “Accept”, your application cannot be submitted or saved.</p>
+
+      <p>By clicking “Accept,” you hereby:</p>
+      <ul>
+        <li>
+          <p>confirm that the Internet access device(s) you will use to complete your online application and to receive
+            the Disclosures meet(s) the system requirements described above; and
+          </p>
+        </li>
+        <li>
+          <p>consent to receiving the Disclosures electronically.
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-3">
+        <button (click)="scrollTop()" id="myBtn1" class="icon-button1 btn btn-primary btn-circle btn-circle-sm m-1 "><i
+            class="fa fa-angle-up"></i></button>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-6">
+        <button type="button" id="cancel" [routerLink]="['/reviewinfo']" class="btn btn-primary">Back</button>
+      </div>
+      <div class="col-6 ">
+        <button type="submit" id="next" (click)="changeDiclosures('credit')"
+          class="app-button btn btn-primary">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="diclosures.credit" class="outside-container">
+    <div *ngIf="error" class="">
+      <div class="alert alert-danger text text-center" role="alert">
+        {{error}}
+      </div>
+    </div>
+
+    <div>
+      <h5 style="display: inline-block;">
+        <span class="aggree-text">Credit Inquiry Disclosure
+        </span>
+      </h5>
+
+      <p>"You acknowledge that the above information is true and correct, and you authorize <b><b>{{dealershipData.dealership.name}}</b></b>  to obtain consumer credit reports on you for the purposes of securing credit. <b>{{dealershipData.dealership.name}}</b> may share this application and other information collected from and/or about you with financial institutions for the purpose of securing credit. You authorize those financial institutions to obtain consumer credit reports on you and to gather and confirm credit, income, bank, employment history and other information you have provided in the application as necessary and appropriate. You understand that <b>{{dealershipData.dealership.name}}</b> and/or any financial institution to whom your application is submitted will retain the application whether or not it is approved."
+    </div>
+
+    <div>
+      <h5 style="display: inline-block;">
+        <span class="aggree-text">State Application Disclosures:
+        </span>
+      </h5>
+      <p>California Residents: An applicant, if married, may apply for a separate account.
+      </p>
+      <p>New Hampshire Residents: A balloon contract is an installment sale contract with a final scheduled payment that is at least twice the amount of one of the earlier scheduled equal periodic installment payments. If this is an application for a balloon contract, you are entitled to receive, upon request, a written estimate of the monthly payment amount that would be required to refinance the balloon payment at the time the payment is due based on the creditor’s existing refinancing programs.</p>
+      <p>New York Residents: A consumer report may be obtained in connection with your application. If credit is extended, the holder of the credit may obtain additional consumer reports in connection with any update, renewal or extension of the credit. If you ask, you will be told whether a consumer report was requested and the name and address of any consumer reporting agency that furnished the report.</p>
+      <p>Ohio Residents: The Ohio laws against discrimination require that all creditors make credit equally available to all credit worthy customers, and that credit reporting agencies maintain separate credit histories on each individual upon request. The Ohio civil rights commission administers compliance with this law.
+
+      </p>
+
+      <p>Rhode Island Residents: Consumer reports may be requested in connection with this application.
+      </p>
+
+      <p>Vermont Residents: You authorize any potential creditor with which this credit application is shared to obtain and verify information about you (including consumer reports) as necessary or appropriate evaluate your application for credit. If credit is extended, you also authorize holder of the credit to obtain additional consumer reports in connection with the same transaction or extension of credit, for the purpose of reviewing the account, increasing the credit line on the account, for the purpose of taking collection action on the account, or for other legitimate purposes associated with the account.
+      </p>
+
+      <p>Married Wisconsin Residents: No provision of a marital property agreement, unilateral statement under Section 766.59, Wisconsin Statutes, or a court decree under Section 766.70, Wisconsin Statutes, affecting marital property adversely affects the interest of a creditor, unless the creditor receives a copy of the agreement, statement or decree prior to granting the credit or unless the creditor has actual knowledge of the adverse provision when the obligation to the creditor is incurred.
+      </p>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-3">
+        <button (click)="scrollTop()" id="myBtn1" class="icon-button1 btn btn-primary btn-circle btn-circle-sm m-1 "><i
+            class="fa fa-angle-up"></i></button>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-6">
+        <button type="button" id="cancel" (click)="changeDiclosures('electronic')" class="btn btn-primary">Back</button>
+      </div>
+      <div class="col-6 ">
+        <button type="submit" id="next" (click)="changeDiclosures('privacy')"
+          class="app-button btn btn-primary">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="diclosures.privacy" class="outside-container">
+    <div *ngIf="error" class="">
+      <div class="alert alert-danger text text-center" role="alert">
+        {{error}}
+      </div>
+    </div>
+
+    <div>
+      <h5 style="display: inline-block;">
+        <span class="aggree-text">Privacy Policy
+        </span>
+      </h5>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Mi sit amet mauris commodo quis imperdiet massa tincidunt. Mauris in aliquam sem fringilla ut
+        morbi tincidunt augue. Vehicula ipsum a arcu cursus. Mauris pellentesque pulvinar pellentesque habitant morbi
+        tristique. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Tincidunt ornare massa eget egestas
+        purus viverra. Lacus suspendisse faucibus interdum posuere lorem ipsum. Tincidunt id aliquet risus feugiat.
+        Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. A diam sollicitudin tempor id eu nisl nunc.
+        Volutpat odio facilisis mauris sit amet massa vitae tortor condimentum. Etiam tempor orci eu lobortis elementum
+        nibh tellus. Interdum velit euismod in pellentesque massa. Hendrerit dolor magna eget est lorem. Ornare massa
+        eget egestas purus. Enim sed faucibus turpis in.
+      </p>
+      <p>Duis convallis convallis tellus id interdum velit. Tristique sollicitudin nibh sit amet commodo nulla. Morbi
+        tincidunt ornare massa eget egestas. Nibh sit amet commodo nulla. Neque ornare aenean euismod elementum nisi
+        quis. Vel facilisis volutpat est velit egestas dui id ornare. Est velit egestas dui id ornare arcu. Cras sed
+        felis eget velit. Tempus urna et pharetra pharetra massa massa. Eget aliquet nibh praesent tristique magna.
+        Tortor consequat id porta nibh venenatis cras sed felis. Non pulvinar neque laoreet suspendisse interdum
+        consectetur. In massa tempor nec feugiat nisl. Donec massa sapien faucibus et. Ut morbi tincidunt augue interdum
+        velit euismod. Mauris cursus mattis molestie a. Urna condimentum mattis pellentesque id nibh tortor id aliquet.
+        Velit scelerisque in dictum non consectetur a erat. Phasellus vestibulum lorem sed risus. A condimentum vitae
+        sapien pellentesque.
+      </p>
+      <p>Nunc pulvinar sapien et ligula ullamcorper malesuada. Quam quisque id diam vel quam elementum pulvinar etiam
+        non. Commodo elit at imperdiet dui accumsan sit amet nulla. Convallis posuere morbi leo urna molestie at
+        elementum eu. Augue interdum velit euismod in pellentesque massa placerat duis. Ut pharetra sit amet aliquam id
+        diam maecenas ultricies mi posuere ac ut. Consectetur adipiscing elit ut aliquam purus sit. Vitae et leo duis ut
+        diam quam nulla porttitor massa. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Cursus in hac
+        habitasse platea dictumst quisque. Mi in nulla posuere sollicitudin. Lectus urna duis convallis convallis
+        tellus. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Sed augue lacus
+        viverra vitae congue eu consequat..</p>
+
+      <p>A erat nam at lectus. Sem fringilla ut morbi tincidunt augue interdum velit. Cras pulvinar mattis nunc sed
+        blandit libero volutpat sed. Tincidunt vitae semper quis lectus. Dignissim diam quis enim lobortis scelerisque
+        fermentum. Eros donec ac odio tempor orci dapibus. Mus mauris vitae ultricies leo. Posuere sollicitudin aliquam
+        ultrices sagittis orci a scelerisque purus semper. Egestas sed tempus urna et pharetra pharetra massa massa.
+        Dignissim convallis aenean et tortor at risus viverra. Sapien nec sagittis aliquam malesuada bibendum arcu vitae
+        elementum curabitur. Vitae proin sagittis nisl rhoncus.
+      </p>
+      <p>Semper quis lectus nulla at volutpat diam ut venenatis tellus. Ultrices dui sapien eget mi proin sed libero
+        enim sed. A lacus vestibulum sed arcu non odio euismod lacinia. In tellus integer feugiat scelerisque varius.
+        Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Interdum varius sit amet mattis vulputate.
+        Nascetur ridiculus mus mauris vitae ultricies leo integer. Ridiculus mus mauris vitae ultricies leo integer
+        malesuada nunc vel. Id aliquet lectus proin nibh nisl condimentum id. Vel turpis nunc eget lorem dolor sed
+        viverra ipsum nunc. Ullamcorper sit amet risus nullam eget felis eget nunc. Viverra justo nec ultrices dui
+        sapien eget mi proin sed. Commodo sed egestas egestas fringilla phasellus
+      </p>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-3">
+        <button (click)="scrollTop()" id="myBtn1" class="icon-button1 btn btn-primary btn-circle btn-circle-sm m-1 "><i
+            class="fa fa-angle-up"></i></button>
+      </div>
+      <form class="col-9 form-inline">
+
+        <label class="form-check-label">
+          <input id="check-input" [ngModelOptions]="{standalone: true}" ngModel [(ngModel)]="checkBox"
+            class="form-check-input mr-3" type="checkbox"> <span class="checkbox-text ml-3"> I agree
+            to the disclosures</span>
+        </label>
+      </form>
+    </div>
+    
+    <div class="row mt-5">
+      <div class="col-6">
+        <button type="button" id="cancel" (click)="changeDiclosures('credit')" class="btn btn-primary">Back</button>
+      </div>
+      <div class="col-6 ">
+        <button type="submit" id="next" (click)="changeDiclosures('submit')"
+          class="app-button btn btn-primary">
+          {{submitLoad ?'':'Submit'}}<div *ngIf="submitLoad" class="spinner-border text-light" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

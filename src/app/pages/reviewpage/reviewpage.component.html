@@ -1,0 +1,437 @@
+<div class="container-fluid">
+  <div class="outside-container">
+    <div>
+      <h6 class="review-header">Please review and edit for accuracy</h6>
+    </div>
+    <div class="detail-header">
+      <h6>Review Information</h6>
+    </div>
+    <form [formGroup]="customerReviewForm">
+      <div class="row">
+        <div class="col-12">
+          <label for="firstname" class="label">Personal Details</label>
+        </div>
+        <div class="col-12">
+          <label for="firstname">First Name</label>
+          <input type="text" formControlName="firstName" class="form-control" aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label>Middle Name</label>
+          <input type="text" formControlName="middleName" name="middlename" id="middlename" class="form-control"
+            aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label>Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control" aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label>Date-of-Birth</label>
+          <input type="tel" formControlName="birthday" maxlength="10" mask="00/00/0000" [dropSpecialCharacters]="false" class="form-control"
+            aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label>SSN</label>
+          <input type="tel" maxlength="11" formControlName="ssn" mask="000-00-0000" [dropSpecialCharacters]="false" class="form-control"
+            aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label>DL #</label>
+          <input type="text" disabled formControlName="driversLicenseNumber" class="form-control"
+            aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label>Email</label>
+          <input type="email" formControlName="email" class="form-control" aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label>Phone Number</label>
+          <input type="tel" maxLength="16" prefix="+1(" formControlName="phoneNumber" mask="000) 000-0000" [dropSpecialCharacters]="false"
+            class="form-control" aria-describedby="helpId">
+        </div>
+      </div>
+
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <label for="numberofdependents">Number of Dependents</label>
+          <input type="tel" id="numOfD" (input)="formatDataService.removeCharcFromField('numOfD')"
+            formControlName="numberOfDependents" class="form-control">
+        </div>
+        <div class="col-12">
+          <label for="educationlevel">Education Level</label>
+          <select formControlName="educationLevel" class="form-control" required>
+            <option [value]="educationLevel.name" *ngFor="let educationLevel of educationLevels">{{educationLevel.name}}
+            </option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="maritalstatus">Marital Status</label>
+          <select formControlName="maritalStatus" class="form-control" required>
+            <option [value]="maritalStatus.name" *ngFor="let maritalStatus of maritalStatuses">{{maritalStatus.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <label for="firstname" class="label">Current Address</label>
+        </div>
+        <div class="col-12">
+          <label>Address</label>
+          <textarea name="address" formControlName="address" id="address" cols="30" class="form-control"
+            rows="3"></textarea>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label>Apartment Unit</label>
+          <input type="text" name="apartmentUnit" id="apartmentUnit" formControlName="apartmentUnit"
+            class="form-control" aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label>City</label>
+          <input type="text" name="city" id="city" formControlName="city" class="form-control"
+            aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label>State</label>
+          <select formControlName="state" class="form-control" aria-describedby="helpId">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label>Zip</label>
+          <input type="text" name="zip" formControlName="zip" id="zip" class="form-control" aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-6">
+          <label for="zip">Years Lived</label>
+          <input type="tel" formControlName="timeAtAddressYears" class="form-control">
+          <!-- <small class="error" *ngIf="(!(yearsLived) && uyears.touched)">Years required.</small> -->
+        </div>
+        <div class="col-6">
+          <label for="zip">Month Lived</label>
+          <input type="tel" (input)="updateMonths($event.target.value)" formControlName="timeAtAddressMonths"
+            maxlength="2" class="form-control">
+        </div>
+      </div>
+
+      <div class="row mt-3" *ngIf="previousAddressState">
+        <div class="col-12">
+          <label for="firstname" class="label">Previous Address</label>
+        </div>
+        <div class="col-12">
+          <label>Address</label>
+          <textarea name="address" formControlName="previousAddress" id="previousAddress" cols="30" class="form-control"
+            rows="3"></textarea>
+        </div>
+      </div>
+      <div class="row mt-3" *ngIf="previousAddressState">
+        <div class="col-12">
+          <label>Previous Apartment Unit</label>
+          <input type="text" name="previousApartmentUnit" id="previousApartmentUnit"
+            formControlName="previousApartmentUnit" class="form-control" aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-3" *ngIf="previousAddressState">
+        <div class="col-12">
+          <label for="educationlevel">Housing Status
+          </label>
+          <select formControlName="housingStatus" class="form-control" aria-describedby="helpId" required>
+            <option [value]="housingStatuse.name" *ngFor="let housingStatuse of housingStatuses">{{housingStatuse.name}}
+            </option>
+          </select>
+        </div>
+        <div class="col-12">
+          <div class="form-group" *ngIf="housingStatus.value=='Mortgage'">
+            <label for="mortgageamount"> Mortgage Amount (Monthly) </label>
+            <input type="tel" currencyMask formControlName="monthlyMortgage" id="monthlyMortgage"
+              (input)="formatDataService.removeCharcFromField('monthlyMortgage')"
+              [options]="{ prefix: '$ ', thousands: ',', precision: 0,align:'left' }" class="form-control"
+              aria-describedby="helpId">
+          </div>
+          <div class="form-group" *ngIf="housingStatus.value=='Rent'">
+            <label for="mortgageamount"> Rent Amount (Monthly) </label>
+            <input type="tel" currencyMask formControlName="monthlyRent" id="monthlyRent"
+              (input)="formatDataService.removeCharcFromField('monthlyRent')"
+              [options]="{ prefix: '$ ', thousands: ',',precision: 0, align:'left' }" class="form-control"
+              aria-describedby="helpId">
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-3" *ngIf="previousAddressState">
+        <div class="col-12">
+          <label>City</label>
+          <input type="text" name="city" id="previousCity" formControlName="previousCity" class="form-control"
+            aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label>State</label>
+          <select formControlName="previousState" class="form-control" aria-describedby="helpId">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label>Zip</label>
+          <input type="text" name="zip" formControlName="previousZip" id="previousZip" class="form-control"
+            aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-2" *ngIf="previousAddressState">
+        <div class="col-6">
+          <label for="zip">Years Lived</label>
+          <input type="tel" formControlName="timeAtPreviousAddressYears" class="form-control">
+          <!-- <small class="error" *ngIf="(!(yearsLived) && uyears.touched)">Years required.</small> -->
+        </div>
+        <div class="col-6">
+          <label for="zip">Month Lived</label>
+          <input type="tel" formControlName="timeAtPreviousAddressMonths" maxlength="2" class="form-control">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label for="firstname" class="label">Current Employement Details</label>
+        </div>
+        <div class="col-12">
+          <label>Employment Status</label>
+          <select formControlName="employmentStatus" class="form-control" placeholder="" aria-describedby="helpId">
+            <option [value]="employementStatuse.name" *ngFor="let employementStatuse of employementStatuses">
+              {{employementStatuse.name}}</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="employername">Name of Employer</label>
+          <input type="text" formControlName="employerName" class="form-control" aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label for="jobtitle">Job Title</label>
+          <input type="text" class="form-control" formControlName="jobTitle" aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label for="workphonenumber">Work Phone Number</label>
+          <input type="tel" class="form-control" formControlName="workPhoneNumber" mask="000) 000-0000" [dropSpecialCharacters]="false" prefix="+1("
+            maxLength="16" aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label for="annualincome">Annual Income</label>
+          <input type="tel" class="form-control" currencyMask
+            [options]="{ prefix: '$ ', thousands: ',', precision: 0,align:'left' }" formControlName="annualIncome"
+            aria-describedby="helpId">
+        </div>
+        <!-- <div class="col-12">
+          <label for="additionalincome">Additional Income</label>
+          <input type="text" class="form-control" (input)="formatAdditionalAnnualIncome($event.target.value)"
+            formControlName="additionalIncome" aria-describedby="helpId">
+        </div> -->
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label for="startdate">Employment Start date</label>
+          <input type="tel" maxlength="10" formControlName="startDate" mask="00/00/0000" [dropSpecialCharacters]="false" class="form-control"
+            aria-describedby="helpId">
+        </div>
+      </div>
+      <div *ngIf="previuosEmployementStatus" class="row mt-3">
+        <div class="col-12">
+          <label for="firstname" class="label">Previous Employement Details</label>
+        </div>
+
+        <div class="col-12">
+          <label for="employername">Name of Employer</label>
+          <input type="text" formControlName="previousEmployerName" class="form-control" aria-describedby="helpId">
+        </div>
+      </div>
+      <div *ngIf="previuosEmployementStatus" class="row mt-3">
+        <div class="col-12">
+          <label for="jobtitle">Job Title</label>
+          <input type="text" class="form-control" formControlName="previousJobTitle" aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label for="workphonenumber">Work Phone Number</label>
+          <input type="tel" class="form-control" formControlName="previousPhoneNumber" mask="000) 000-0000" [dropSpecialCharacters]="false" prefix="+1("
+            maxLength="16" aria-describedby="helpId">
+        </div>
+      </div>
+      <div *ngIf="previuosEmployementStatus" class="row mt-3">
+        <div class="col-12">
+          <label for="annualincome">Annual Income</label>
+          <input type="tel" class="form-control" currencyMask
+            [options]="{ prefix: '$ ', thousands: ',', precision: 0,align:'left' }"
+            formControlName="previousAnnualIncome" aria-describedby="helpId">
+        </div>
+      </div>
+      <div *ngIf="previuosEmployementStatus" class="row mt-3">
+        <div class="col-12">
+          <label for="startdate">Employment Start Date</label>
+          <input type="tel" maxlength="10" formControlName="previousEmploymentStartDate" mask="00/00/0000" [dropSpecialCharacters]="false"
+            class="form-control" aria-describedby="helpId">
+        </div>
+        <div class="col-12">
+          <label for="startdate">Employment End Date</label>
+          <input type="tel" maxlength="10" formControlName="previousEmploymentEndDate" mask="00/00/0000" [dropSpecialCharacters]="false"
+            class="form-control" aria-describedby="helpId">
+        </div>
+      </div>
+
+      <div *ngIf="additionalIncomeStatus" class="row mt-3">
+        <div class="col-12">
+          <label for="firstname" class="label">Additional Income Details</label>
+        </div>
+        <div class="col-12">
+          <label for="startdate">Additional Income Source</label>
+          <select formControlName="additionalIncomeSource" class="form-control" placeholder=""
+            aria-describedby="helpId">
+            <option [value]="additionalIncomeSource.name"
+              *ngFor="let additionalIncomeSource of additionalIncomeSources">{{additionalIncomeSource.name}}</option>
+
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="additionalincome">Additional Income</label>
+          <input type="tel" class="form-control" currencyMask
+            [options]="{ prefix: '$ ', thousands: ',', precision: 0,align:'left' }" formControlName="additionalIncome"
+            aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label for="firstname" class="label">Financial Details</label>
+        </div>
+        <div class="col-6">
+          <label for="bankruptcy">Bankruptcy in last 7 years?</label>
+          <input disabled type="text" class="form-control" formControlName="bankruptcy" aria-describedby="helpId">
+        </div>
+        <div class="col-6">
+          <label for="reposession">Repossession last 7 years?</label>
+          <input disabled type="text" class="form-control" formControlName="reposession" aria-describedby="helpId">
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="row">
+        <div class="col-6">
+          <button type="button" [routerLink]="['/finacialinfo']" id="cancel" class="btn btn-primary">Back</button>
+        </div>
+        <div class="col-6">
+          <button type="submit" (click)="submitForm()" id="next" class="btn btn-primary app-button">
+            {{submitLoad ?'':'Next'}}<div *ngIf="submitLoad" class="spinner-border text-light" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

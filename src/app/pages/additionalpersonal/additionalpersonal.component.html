@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <div class="outside-container">
+    <ul class="bread text text-center">
+      <li class="completed-stage"><i class="fa fa-check"></i></li>
+      <li class="">2</li>
+      <li>3</li>
+      <li class="active">4</li>
+      <li>5</li>
+    </ul>
+    <div>
+      <h6 class="review-header">Please complete the application. If information is already populated, please review and
+        edit for accuracy</h6>
+    </div>
+    <form *ngIf="!loading" [formGroup]="customerPersonalAdditionalDataForm">
+      <div class="stepthree">
+        <div>
+          <h6 id="detail-header">Contact and Personal Information</h6>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" formControlName="email" class="form-control" (input)="compareEmails()">
+          <small *ngIf="email.errors?.required && submitted" class="error">Email is
+            required.</small>
+          <small *ngIf="email.errors?.email" class="error">Email must be a valid email address.</small>
+        </div>
+        <div class="form-group">
+          <label for="cemail">Confirm Email</label>
+          <input type="email" formControlName="confirmedEmailAddress" class="form-control" (input)="compareEmails()">
+          <div class="d-flex flex-column">
+            <small class="email-explanation">
+              <p>When you provide your email address, we may use it to send you important information about your
+                application
+              </p>
+            </small>
+            <small *ngIf="!emailMatch" class="error">Emails do not match.</small>
+            <small *ngIf="confirmedEmailAddress.errors?.email" class="error">Email must be a valid email
+              address.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" formControlName="phoneNumber" mask="000) 000-0000" prefix="+1(" maxlength="16"
+            class="form-control" [dropSpecialCharacters]="false">
+          <small *ngIf="phoneNumber.errors?.required && submitted" class="error">Phone number is
+            required.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="maritalstatus">Marital Status</label>
+          <select formControlName="maritalStatus" class="form-control" required>
+            <option [value]="maritalStatus.name" *ngFor="let maritalStatus of maritalStatuses">{{maritalStatus.name}}
+            </option>
+          </select>
+          <small *ngIf="maritalStatus.errors?.required && submitted" class="error">Please select marital status.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="numberofdependents">Number of Dependents</label>
+          <input type="tel" id="numOfD" (input)="formatDataService.removeCharcFromField('numOfD')"
+            formControlName="numberOfDependents" class="form-control">
+          <small class="error" *ngIf="!isValidNumberOfDependants">Invalid number of dependants.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="educationlevel">Education Level</label>
+          <select formControlName="educationLevel" class="form-control" required>
+            <option [value]="educationLevel.name" *ngFor="let educationLevel of educationLevels">{{educationLevel.name}}
+            </option>
+          </select>
+          <small *ngIf="educationLevel.errors?.required && submitted" class="error">Please select education
+            level.</small>
+        </div>
+        <div class="">
+        </div>
+        <div class="row mt-5">
+          <div class="col-6">
+            <a type="button" [routerLink]="['/personalinfo']" routerLinkActive="router-link-active"
+              class="btn btn-primary" style="background-color: darkgrey;
+            border: darkgray;width: 100%;">Back</a>
+          </div>
+          <div class="col-6">
+            <button type="submit" id="next" (click)="submitForm()" [disabled]="submitLoad === true" class="app-button btn btn-primary">
+              {{submitLoad ?'':'Next'}}<div *ngIf="submitLoad" class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

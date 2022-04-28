@@ -1,0 +1,61 @@
+@font-face {
+    font-family: appFont;
+    src: url(../fonts/century/CenturyGothic.ttf);
+  }
+  body{
+    font-family: appFont;
+  }
+
+
+.review-header{
+    font-size: 13px;
+    text-align: center;
+    color:#14B6F1;
+    margin-bottom: 20px;
+}
+
+#detail-header{
+    font-size: 13px;
+    text-align: center;
+    color: #002060;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.form-group label{
+  font-size: 12px;
+  color: #7F7F7F;
+  margin-left: 10px;
+}
+
+.outside-container{
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.error{
+    color: red;
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  .completed-stage{
+        background-color: #002060;
+        color: white !important;
+  }
+
+  .completed-stage i{
+      color: white;
+  }
+
+  .app-button{
+    background-color:#002060  !important;
+    color: white  !important;
+    width: 100%  !important;
+  }
+
+
+  .email-explanation p{
+    font-size: 11px;
+    margin-left: 10px;
+    color:#969696
+  }

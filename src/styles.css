@@ -1,0 +1,32 @@
+
+/* You can add global styles to this file, and also import other style files */
+
+p{
+    line-height: normal;
+}
+
+.bottom-content{
+    bottom: 0;
+    position: absolute;
+     width: 90%;
+     right: 8% !important;
+     left: 9% !important;
+     margin-bottom: 20px;
+}
+.bread {
+  margin-left: -20px;
+}
+.alert-danger{
+  font-weight: bold;
+  color: red;
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+.detail-header {
+  font-size: 13px;
+  text-align: center;
+  color: #002060;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

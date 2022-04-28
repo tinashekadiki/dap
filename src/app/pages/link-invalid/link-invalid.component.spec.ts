@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { LinkInvalidComponent } from './link-invalid.component';
+
+describe('LinkInvalidComponent', () => {
+  let component: LinkInvalidComponent;
+  let fixture: ComponentFixture<LinkInvalidComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [LinkInvalidComponent]
+    });
+    fixture = TestBed.createComponent(LinkInvalidComponent);
+    component = fixture.componentInstance;
+  });
+
+  it('can load instance', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,0 +1,115 @@
+<div class="container mt-3" *ngIf="loading">
+  <div class="item">
+    <ngx-skeleton-loader [theme]="{
+             'border-radius': '3px',
+            height: '300px',
+            'background-color':'#B7C0D2',
+            'border': '1px solid white' }" class="image-loader" count="1" animation="pulse"></ngx-skeleton-loader>
+  </div>
+  <div class="item">
+    <ngx-skeleton-loader [theme]="{
+            'border-radius': '3px',
+            'background-color':'#B7C0D2',
+           'border': '1px solid white' }" class="name-loader" count="1" animation="pulse"></ngx-skeleton-loader>
+  </div>
+  <div class="item text text-center">
+    <ngx-skeleton-loader [theme]="{
+            'border-radius': '3px',
+            'background-color':'#B7C0D2',
+           'border': '1px solid white' }" count="1" appearance="circle"></ngx-skeleton-loader>
+  </div>
+
+  <div class="row bottom-content">
+    <div class="col-12">
+      <button disabled href="#" class="btn btn-primary btn-block app-button">Loading...</button>
+    </div>
+  </div>
+
+</div>
+<!-- <div *ngIf="!loading">
+  <div style="width: 100%;">
+    <img src="../../../assets/images/dealer.png" id="centre-image">
+  </div>
+  <div class="container">
+
+    <div class="outside-container">
+      <div>
+        <h6 class="text-color text text-center home-main-text">Welcome
+          Blessing Mwale
+        </h6>
+      </div>
+      <div class="text text-center">
+        <img src="../../../assets/images/lock.png" alt="">
+      </div>
+      <div class="clear"></div>
+      <div class="info-holder">
+        <p class="top-text text-color text-center">
+          This is a secure digital site, where we will be requesting information so that you can apply for credit in
+          connection with your purchase or lease of your vehicle at <strong>Joe Doe’s Infiniti</strong>
+        </p>
+      </div>
+      <div class="clear"></div>
+      <div class="row bottom-content">
+        <div class="col-12">
+          <button href="#" [routerLink]="[ '/disclosures' ]"
+            class="btn btn-primary btn-block app-button">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+ <div *ngIf="!loading && imageData">
+  <div class="mt-2"  >
+    <img id="centre-image" [src]="imageData.fileDownloadUri">
+  </div>
+  <div class="container">
+
+    <div class="outside-container">
+
+      <div>
+        <h6 class="text-color text text-center home-main-text">Welcome
+          {{personalData.firstName}} {{personalData.lastName}}
+        </h6>
+      </div>
+      <div class="clear"></div>
+      <div class="info-holder">
+        <p class="top-text text-color text-center">
+          This is a secure digital site, where we will be requesting information so that you can apply for credit in
+          connection with your purchase or lease of your vehicle at <strong>{{dealershipData.dealership.name}}</strong>
+        </p>
+      </div>
+      <div class="text text-center mt-3" >
+        <img src="../../../assets/images/security.png" alt="">
+        <h6 class="home-main-text">Your data is safe with us</h6>
+      </div>
+      <div class="text text-center mt-3" >
+        <p class="top-text text-center text-color" >
+          Please Click Continue to Proceed
+        </p>
+      </div>
+      <div class=" text-center">
+        <button href="#" [routerLink]="['/disclosures']" class="btn btn-primary btn-block app-button">Continue</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+<div class="container" *ngIf="!loading && !imageData">
+  <div class="header text-center mt-4">
+    <h4 class="header-1-text">Welcome
+      {{personalData.firstName}} {{personalData.lastName}}</h4>
+    <p class="text text-center mt-4 mb-5" style="margin-top: 5rem;">
+      This is a secure digital site, where we will be requesting information so that you can apply for credit in
+      connection with your purchase or lease of your vehicle at <strong>{{dealershipData.dealership.name}}</strong>
+    </p>
+  </div>
+  <div class="middle text-center " style="margin-top: 5rem;">
+    <img src="../../../assets/images/security.png" alt="">
+        <h6 class="home-main-text">Your data is safe with us</h6>
+  </div>
+
+  <div class="text-center" style="margin-top: 10rem;">
+    <button href="#" [routerLink]="['/disclosures']" class="btn btn-primary btn-block app-button">Continue</button>
+  </div>
+</div>
